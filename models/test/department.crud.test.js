@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 const Department = require('../department.model.js');
 
 describe('Department', function () {
-  this.timeout(10000); // UWAGA: działa tylko w function(), nie w arrow function
+  this.timeout(10000);
 
   before(async () => {
     try {
