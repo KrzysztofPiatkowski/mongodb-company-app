@@ -7,14 +7,11 @@ describe('Employee', function () {
   this.timeout(10000);
 
   before(async () => {
-    await mongoose.connect('mongodb://127.0.0.1:27017/companyDBtest', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    
   });
 
   after(async () => {
-    await mongoose.disconnect();
+  
   });
 
   describe('Reading data', () => {

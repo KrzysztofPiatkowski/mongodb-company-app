@@ -5,23 +5,10 @@ const Department = require('../department.model.js');
 describe('Department', function () {
   this.timeout(10000);
 
-  before(async () => {
-    try {
-      console.log('🔌 Connecting to MongoDB...');
-      await mongoose.connect('mongodb://127.0.0.1:27017/companyDBtest', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-      console.log('✅ Connected to MongoDB!');
-    } catch (err) {
-      console.error('❌ Connection error:', err);
-    }
-  });
-
   describe('Reading data', () => {
     before(async () => {
       console.log('🧪 Adding test departments...');
-      await Department.deleteMany(); // 👈 dodaj to, by wyczyścić dane z innych testów
+      await Department.deleteMany();
       const testDepOne = new Department({ name: 'Department #1' });
       await testDepOne.save();
 
@@ -31,7 +18,7 @@ describe('Department', function () {
 
     it('should return all the data with "find" method', async () => {
       const departments = await Department.find();
-      expect(departments.length).to.be.equal(2); // ✅ teraz będzie poprawnie
+      expect(departments.length).to.be.equal(2);
     });
 
     it('should return a proper document by "name" with "findOne" method', async () => {
@@ -123,7 +110,6 @@ describe('Department', function () {
     });
 
   after(async () => {
-    console.log('🔌 Disconnecting from MongoDB...');
-    await mongoose.disconnect();
+  
   });
 });
